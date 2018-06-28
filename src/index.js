@@ -1,6 +1,7 @@
 function htmlWebpackAddModulePlugin(options) {
   this.module = options.module
   this.nomodule = options.nomodule
+  this.removeCSS = options.removeCSS
 }
 
 
@@ -17,6 +18,14 @@ htmlWebpackAddModulePlugin.prototype.apply = function (compiler) {
       } else {
         changeAttributes.call(this, htmlPluginData, 'nomodule', 'nomodule', true)
       }
+    }
+
+    if (this.removeCSS) {
+      htmlPluginData.head.forEach((k, i) => {
+        if (k.attributes.href.indexOf(this.removeCSS) > -1) {
+          htmlPluginData.head.splice(i, 1)
+        }
+      })
     }
     callback(null, htmlPluginData)
   }
