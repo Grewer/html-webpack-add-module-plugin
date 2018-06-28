@@ -5,7 +5,7 @@
 ### Usage
 
 ```
-npm i html-webpack-add-module-plugin -S
+npm i html-webpack-add-module-plugin -D
 ```
 
 ```
